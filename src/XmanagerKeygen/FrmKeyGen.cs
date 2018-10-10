@@ -126,11 +126,18 @@ namespace XmanagerKeygen
             this.caption.MouseDown += (sender, e) => Util.BeginDrag(this.Handle);
             this.btnGen.Click += (sender, e) =>
             {
-                this.txtKey.Focus();
-                ProductCode productCode = (ProductCode)this.cboProduct.SelectedValue;
-                int version = (int)this.nudVersion.Value;
-                this.txtKey.Text = KeyGen.GenerateKey(productCode, version, 999, DateTime.Now);
-                this.txtKey.SelectAll();
+                try
+                {
+                    this.txtKey.Focus();
+                    ProductCode productCode = (ProductCode)this.cboProduct.SelectedValue;
+                    int version = (int)this.nudVersion.Value;
+                    this.txtKey.Text = KeyGen.GenerateKey(productCode, version, 999, DateTime.Now);
+                    this.txtKey.SelectAll();
+                }
+                catch (Exception exp)
+                {
+                    MessageBox.Show(this, exp.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
             };
             this.btnClose.Click += (sender, e) => this.Close();
         }

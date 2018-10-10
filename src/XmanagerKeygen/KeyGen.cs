@@ -6,7 +6,7 @@ namespace XmanagerKeygen
     {
         private static readonly Random random = new Random();
 
-        private static int charToInt(char ch)
+        private static int CharToInt(char ch)
         {
             return ch - '0';
         }
@@ -14,29 +14,30 @@ namespace XmanagerKeygen
         private static int GetChecksum(string preProductKey)
         {
             if (preProductKey == null)
-                throw new ArgumentNullException(nameof(preProductKey));
+                throw new ArgumentException($"{nameof(preProductKey)} can not be null.");
             if (preProductKey.Length < 10)
-                throw new ArgumentException("length must greater than 10.", nameof(preProductKey));
+                throw new ArgumentException($"{nameof(preProductKey)}'s length cannot less than 10.");
+
             int checksum = 1;
             foreach (char item in preProductKey)
             {
                 if (item != '-' && item != '8' && item != '9')
                 {
-                    int place = charToInt(item);
+                    int place = CharToInt(item);
                     checksum = (9 - place) * checksum % -1000;
                 }
             }
-            return (checksum + charToInt(preProductKey[9])) % 1000;
+            return (checksum + CharToInt(preProductKey[9])) % 1000;
         }
 
         public static string GenerateKey(ProductCode productCode, int version, int numberOfLicense, DateTime issueDate)
         {
             if (numberOfLicense < 0 || numberOfLicense > 999)
-                throw new ArgumentException("must vary from 0 to 999.", nameof(numberOfLicense));
+                throw new ArgumentException($"{nameof(numberOfLicense)} must in range from 0 to 999.");
             if (issueDate.Year < 2002)
-                throw new ArgumentException("cannot be earlier than 2002.", nameof(issueDate));
+                throw new ArgumentException($"{nameof(issueDate)} cannot be earlier than 2002.");
             if (issueDate > DateTime.Now.AddDays(7).Date)
-                throw new ArgumentException("cannot be later than today after a week.", nameof(issueDate));
+                throw new ArgumentException($"{nameof(issueDate)} cannot be later than today after a week.");
 
             foreach (Product item in ProductCollection.Default)
             {
@@ -45,7 +46,7 @@ namespace XmanagerKeygen
                 if (item.Code == productCode && item.Version == version)
                 {
                     if (item.PublishDate > issueDate)
-                        throw new ArgumentException("cannot be earlier than the publish date.", nameof(issueDate));
+                        throw new ArgumentException($"{nameof(issueDate)} cannot be earlier than the publish date.");
                     break;
                 }
             }
