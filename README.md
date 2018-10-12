@@ -18,9 +18,14 @@ https://cdn.netsarang.net/bfa85108/XmanagerPowerSuite-6.0.0008r.exe
 ## 修改 hosts
 
 - 使用文本编辑器打开 `C:\Windows\System32\drivers\etc\hosts`。
-- 添加以下文本。
+- 添加以下文本：
 ```
 127.0.0.1 activate.netsarang.com
+127.0.0.1 sales.netsarang.com
+127.0.0.1 transact.netsarang.com
+127.0.0.1 update.netsarang.com
+127.0.0.1 www.netsarang.co.kr
+127.0.0.1 www.netsarang.com
 ```
 
 ## 安装
@@ -30,11 +35,7 @@ https://cdn.netsarang.net/bfa85108/XmanagerPowerSuite-6.0.0008r.exe
 - 安装完成。
 
 ## 激活
-- 参考 `更改注册码` 第 `3`、`4` 步。
-
-## 更改注册码
-- 运行一下安装目录下的 `nsregister.exe`，此程序没有界面，运行后处于未激活状态。
-- 打开 `Xshell`，帮助菜单，`Xshell` 注册，在线激活，输入新激活码，点击下一步，会显示激活失败。
+- 确认已修改 `hosts`。
 - 关闭 `Xshell` 进程，删除注册表 `HKEY_CURRENT_USER\Software\NetSarang`。
 - 重新打开 `Xshell` 显示已注册。
 
