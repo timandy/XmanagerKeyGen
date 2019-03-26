@@ -11,7 +11,7 @@
 试用版
 https://cdn.netsarang.net/bfa85108/XmanagerPowerSuite-6.0.0008.exe
 
-正式版
+零售版
 https://cdn.netsarang.net/bfa85108/XmanagerPowerSuite-6.0.0008r.exe
 ``` 
 
